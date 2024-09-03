@@ -12,7 +12,8 @@
 
 - reWASD: https://www.rewasd.com/
   - 協力者一覧: https://www.rewasd.com/translators
-- blog: https://eps-r.hatenablog.com/archive/category/%E7%89%B9%E9%9B%86%EF%BC%9AreWASD
+- blog:
+  - https://eps-r.hatenablog.com/archive/category/%E7%89%B9%E9%9B%86%EF%BC%9AreWASD
 
 ### Inertial Drift Japanese localization improving mod
 
