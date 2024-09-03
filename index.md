@@ -60,7 +60,7 @@ QWERTYキーボード付き端末向けにSymキーを半角/全角（漢字）�
 
 ### blog
 
-デジタルガジェット、ゲーム、Vaporware、詐欺サイトへの注意喚起などの雑談（2009年～）
+デジタルガジェット、ゲーム、Vaporwareなどの雑談や、詐欺サイトの注意喚起など（2009年～）
 
 - https://eps-r.hatenablog.com/
 - 比較的読まれた記事: https://b.hatena.ne.jp/site/eps-r.hatenablog.com/?sort=count
