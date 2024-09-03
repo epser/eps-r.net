@@ -6,15 +6,6 @@
 
 ## Public activities
 
-### reWASD Japanese localization
-
-入力機器リマッピングソフトに外部協力者として翻訳を提供（2022年～）
-
-- reWASD: https://www.rewasd.com/
-  - 協力者一覧: https://www.rewasd.com/translators
-- blog:
-  - https://eps-r.hatenablog.com/archive/category/%E7%89%B9%E9%9B%86%EF%BC%9AreWASD
-
 ### Inertial Drift Japanese localization improving mod
 
 すごくおもしろいレースゲームの日本語訳とフォントレンダリングを向上するMod（2024年）
@@ -23,6 +14,15 @@
 - 作業時のメモ: https://eps-r.gitbook.io/inertial_drift
 - blog:
   - https://eps-r.hatenablog.com/entry/2024/09/01/inertial_drift_japanese_mod
+
+### reWASD Japanese localization
+
+入力機器リマッピングソフトに外部協力者として翻訳を提供（2022年～）
+
+- reWASD: https://www.rewasd.com/
+  - 協力者一覧: https://www.rewasd.com/translators
+- blog:
+  - https://eps-r.hatenablog.com/archive/category/%E7%89%B9%E9%9B%86%EF%BC%9AreWASD
 
 ### Fx Kanji Mod for F(x)tec Pro1 (and Pro1-X)
 
@@ -42,6 +42,10 @@ QWERTYキーボード付き端末向けにSymキーを半角/全角（漢字）�
 - Gist: https://gist.github.com/epser/0f2cb7cff2f36072d468358057e96f81
 - Gitbook（移行中）: https://eps-r.gitbook.io/grimoire/
 
+### Userscript
+
+- Webページのホイールスクロールが勝手にスムーススクロールになるやつの対策（2018年）: https://gist.github.com/epser/435a6bc6271fa63a467c1f1e3851a04d
+
 ### （終了）ボーダーブレイク 店舗情報マップ
 
 セガ公式サイトをクロールしてアーケードゲーム設置店の座標を日本地図にプロットするサイトと、店舗の開店・閉店情報をツイートするbot（2011年～2019年）
@@ -54,13 +58,9 @@ QWERTYキーボード付き端末向けにSymキーを半角/全角（漢字）�
   - https://eps-r.hatenablog.com/entry/2014/09/23/164613
   - https://eps-r.hatenablog.com/entry/2018/11/06/bb-graph
 
-### Userscript
-
-- Webページのホイールスクロールが勝手にスムーススクロールになるやつの対策（2018年）: https://gist.github.com/epser/435a6bc6271fa63a467c1f1e3851a04d
-
 ### blog
 
-デジタルガジェット、ゲーム、Vaporware、詐欺サイトへの注意喚起などの雑談
+デジタルガジェット、ゲーム、Vaporware、詐欺サイトへの注意喚起などの雑談（2009年～）
 
 - https://eps-r.hatenablog.com/
 - 比較的読まれた記事: https://b.hatena.ne.jp/site/eps-r.hatenablog.com/?sort=count
