@@ -27,7 +27,7 @@ QWERTYキーボード付き端末向けに半角/全角（漢字）を追加し�
 
 - Google Play: https://play.google.com/store/apps/details?id=net.eps_r.hwkbd_kanji.FxTecPro1KanjiMod
 - Github: https://github.com/epser/hwkbd_kanji
-- 関連blog:
+- blog:
   - https://eps-r.hatenablog.com/entry/2020/07/19/fxkanjimod
   - https://eps-r.hatenablog.com/entry/2020/07/29/fx-kanji-mod-document
   - https://eps-r.hatenablog.com/entry/2022/12/13/pro1-x
