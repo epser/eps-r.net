@@ -25,7 +25,7 @@
 
 ### Fx Kanji Mod for F(x)tec Pro1 (and Pro1-X)
 
-QWERTYキーボード付き端末向けに半角/全角（漢字）を追加したり、Fnモディファイヤを増補するカスタムキーボードレイアウト（2020年～2022年）
+QWERTYキーボード付き端末向けにSymキーを半角/全角（漢字）に置き換えたり、Fnモディファイヤを増やしたりするカスタムキーボードレイアウト（2020年～2022年）
 
 - Google Play: https://play.google.com/store/apps/details?id=net.eps_r.hwkbd_kanji.FxTecPro1KanjiMod
 - Github: https://github.com/epser/hwkbd_kanji
@@ -59,7 +59,7 @@ QWERTYキーボード付き端末向けに半角/全角（漢字）を追加し�
 
 ### blog
 
-デジタルガジェット、ゲーム、Vaporware、詐欺サイトほか雑談
+デジタルガジェット、ゲーム、Vaporware、詐欺サイトへの注意喚起などの雑談
 
 - https://eps-r.hatenablog.com/
 - 比較的読まれた記事: https://b.hatena.ne.jp/site/eps-r.hatenablog.com/?sort=count
