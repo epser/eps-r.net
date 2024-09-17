@@ -8,7 +8,7 @@
 
 ### Inertial Drift Japanese localization improving mod
 
-すごくおもしろいレースゲームの日本語訳とフォントレンダリングを向上するMod（2024年）
+レースゲームの日本語訳とフォントレンダリングを向上するMod（2024年）
 
 - 公開所: https://github.com/epser/inertial_drift_improve_japanese
 - 作業時のメモ: https://eps-r.gitbook.io/inertial_drift
