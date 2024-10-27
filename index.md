@@ -15,7 +15,8 @@
 
 レースゲームの日本語訳とフォントレンダリングを向上するMod（2024年）
 
-- 公開所: https://github.com/epser/inertial_drift_improve_japanese
+- 公開所(GitHub): https://github.com/epser/inertial_drift_improve_japanese
+- 公開所(Steam Communite Guide): https://steamcommunity.com/sharedfiles/filedetails/?id=3330190348
 - 作業時のメモ: https://eps-r.gitbook.io/inertial_drift
 - blog:
   - https://eps-r.hatenablog.com/entry/2024/09/01/inertial_drift_japanese_mod
@@ -34,7 +35,7 @@
 QWERTYキーボード付き端末向けにSymキーを半角/全角（漢字）に置き換えたり、Fnモディファイヤを増やしたりするカスタムキーボードレイアウト（2020年～2022年）
 
 - Google Play: https://play.google.com/store/apps/details?id=net.eps_r.hwkbd_kanji.FxTecPro1KanjiMod
-- Github: https://github.com/epser/hwkbd_kanji
+- GitHub: https://github.com/epser/hwkbd_kanji
 - blog:
   - https://eps-r.hatenablog.com/entry/2020/07/19/fxkanjimod
   - https://eps-r.hatenablog.com/entry/2020/07/29/fx-kanji-mod-document
