@@ -4,7 +4,7 @@
 
 <p>
   <img src="https://raw.githubusercontent.com/epser/eps-r.net/refs/heads/main/penguin.jpg" style="width:20rem;max-width:100%" alt="ペンギン像" /><br>
-  これは特に関係ない写真、2018年静岡県伊東市
+  2018年、静岡県伊東市
 </p>
 
 - Name: 稲葉(Inaba), eps_r, epser
