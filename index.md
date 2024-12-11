@@ -11,9 +11,17 @@
 
 ## Public activities
 
+### Japanese Mecha Anime Style Dialogue Mod for WARBORN
+
+ストラテジーゲーム『WARBORN』の日本語訳を勝手にやり直し、ローカライズ全般をまともに近付け、幾つかの追加機能を設けるMOD（2024年）
+
+- 公開所(GitHub): https://github.com/epser/warborn_japanese_mod
+- blog:
+  - https://eps-r.hatenablog.com/entry/2024/12/02/warborn-japanese-mod
+
 ### Inertial Drift Japanese localization improving mod
 
-レースゲームの日本語訳とフォントレンダリングを向上するMod（2024年）
+レースゲーム『Inertial Drift』の日本語訳を勝手にやり直したり、フォントレンダリングの異常を修正するMod（2024年）
 
 - 公開所(GitHub): https://github.com/epser/inertial_drift_improve_japanese
 - 公開所(Steam Communite Guide): https://steamcommunity.com/sharedfiles/filedetails/?id=3330190348
