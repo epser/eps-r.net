@@ -13,18 +13,20 @@
 
 ### Japanese Mecha Anime Style Dialogue Mod for WARBORN
 
-ストラテジーゲーム『WARBORN』の日本語訳を勝手にやり直し、ローカライズ全般をまともに近付け、幾つかの追加機能を設けるMOD（2024年）
+ストラテジーゲーム『[WARBORN](https://store.steampowered.com/app/918950/_/)』の日本語訳をやり直し、フォントの見栄えを修正したり、幾つかの機能を追加したりするMod（2024年）
 
 - 公開所(GitHub): https://github.com/epser/warborn_japanese_mod
+- 公開所(Steam Community Guide): https://steamcommunity.com/sharedfiles/filedetails/?id=3386684473
 - blog:
-  - https://eps-r.hatenablog.com/entry/2024/12/02/warborn-japanese-mod
+  - 機能プレビュー: https://eps-r.hatenablog.com/entry/2024/12/02/warborn-japanese-mod
+  - 翻訳プレビュー: https://eps-r.hatenablog.com/entry/2024/12/28/warborn-vs-tomino
 
 ### Inertial Drift Japanese localization improving mod
 
-レースゲーム『Inertial Drift』の日本語訳を勝手にやり直したり、フォントレンダリングの異常を修正するMod（2024年）
+レースゲーム『[Inertial Drift](https://store.steampowered.com/app/1184480/Inertial_Drift/)』の日本語訳をやり直し、フォントレンダリングの異常を修正したりするMod（2024年）
 
 - 公開所(GitHub): https://github.com/epser/inertial_drift_improve_japanese
-- 公開所(Steam Communite Guide): https://steamcommunity.com/sharedfiles/filedetails/?id=3330190348
+- 公開所(Steam Community Guide): https://steamcommunity.com/sharedfiles/filedetails/?id=3330190348
 - 作業時のメモ: https://eps-r.gitbook.io/inertial_drift
 - blog:
   - https://eps-r.hatenablog.com/entry/2024/09/01/inertial_drift_japanese_mod
@@ -40,10 +42,10 @@
 
 ### Fx Kanji Mod for F(x)tec Pro1 (and Pro1-X)
 
-QWERTYキーボード付き端末向けにSymキーを半角/全角（漢字）に置き換えたり、Fnモディファイヤを増やしたりするカスタムキーボードレイアウト（2020年～2022年）
+QWERTYキーボード付きAndroid端末『F(x)tec Pro 1』シリーズ向けにSymキーを半角/全角（漢字）に置き換えたり、Fnモディファイヤを増やしたりするカスタムキーボードレイアウト（2020年～2022年）
 
-- Google Play: https://play.google.com/store/apps/details?id=net.eps_r.hwkbd_kanji.FxTecPro1KanjiMod
-- GitHub: https://github.com/epser/hwkbd_kanji
+- GitHub(公開中): https://github.com/epser/hwkbd_kanji
+- Google Play(公開終了): https://play.google.com/store/apps/details?id=net.eps_r.hwkbd_kanji.FxTecPro1KanjiMod
 - blog:
   - https://eps-r.hatenablog.com/entry/2020/07/19/fxkanjimod
   - https://eps-r.hatenablog.com/entry/2020/07/29/fx-kanji-mod-document
