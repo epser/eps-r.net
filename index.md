@@ -13,6 +13,8 @@
 
 ### Japanese Mecha Anime Style Dialogue Mod for WARBORN
 
+<img src="https://raw.githubusercontent.com/epser/eps-r.net/refs/heads/main/warborn.gif" style="max-width:auto;">
+
 ストラテジーゲーム『[WARBORN](https://store.steampowered.com/app/918950/_/)』の日本語訳をやり直し、フォントの見栄えを修正したり、幾つかの機能を追加したりするMod（2024年）
 
 - 公開所(GitHub): https://github.com/epser/warborn_japanese_mod
