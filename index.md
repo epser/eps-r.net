@@ -87,5 +87,6 @@ QWERTYキーボード付きAndroid端末『F(x)tec Pro 1』シリーズ向けに
 
 - Twitter(X): https://x.com/eps_r
 - Bluesky: https://eps-r.bsky.social/
-- Gist: https://gist.github.com/epser/
+- Discord: eps_r
+- Github gist: https://gist.github.com/epser/
 - Google Form: https://docs.google.com/forms/d/e/1FAIpQLSeWbLshXTV8bs8tnRk3Wj-QSU79OA1MKzvHd-IlaSd1cUFzLg/viewform
