@@ -11,6 +11,8 @@
 
 ## 活動
 
+翻訳はすべてMTPE(Machine Translation Post Editing)の、無償あるいはソフトウェアライセンス程度の報酬で行っている同人活動です。
+
 ### Chaos Front (Demo) Japanese localization
 
 <img src="https://raw.githubusercontent.com/epser/eps-r.net/refs/heads/main/cf_demo_1.jpg" style="width:35rem;max-width:auto;">
