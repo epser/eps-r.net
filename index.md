@@ -7,11 +7,18 @@
   2018年、静岡県伊東市
 </p>
 
-- Name: 稲葉(Inaba), eps_r, epser
+- Name:
+  - 稲葉(Inaba)
+  - eps_r
+  - epser
+- Contact:
+  - Twitter(X): https://x.com/eps_r
+  - Bluesky: https://eps-r.bsky.social/
+  - Google Form: https://docs.google.com/forms/d/e/1FAIpQLSeWbLshXTV8bs8tnRk3Wj-QSU79OA1MKzvHd-IlaSd1cUFzLg/viewform
 
 ## 活動
 
-翻訳はすべてMTPE(Machine Translation Post Editing)の、無償あるいはソフトウェアライセンス程度の報酬で行っている同人活動です。
+翻訳はすべてMTPE(Machine Translation Post Editing - 修正機械翻訳)の、無償あるいはソフトウェアライセンス程度の報酬で行っている同人活動です。
 
 ### Chaos Front (Demo) Japanese localization
 
@@ -102,10 +109,3 @@ Android用カスタムキーボードレイアウト。QWERTYキーボード付�
 
 - https://eps-r.hatenablog.com/
 - 比較的読まれた記事: https://b.hatena.ne.jp/site/eps-r.hatenablog.com/?sort=count
-
-## 連絡先
-
-- Twitter(X): https://x.com/eps_r
-- Bluesky: https://eps-r.bsky.social/
-- Github gist: https://gist.github.com/epser/
-- Google Form: https://docs.google.com/forms/d/e/1FAIpQLSeWbLshXTV8bs8tnRk3Wj-QSU79OA1MKzvHd-IlaSd1cUFzLg/viewform
