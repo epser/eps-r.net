@@ -85,7 +85,7 @@ Android用カスタムキーボードレイアウト。QWERTYキーボード付�
 かつて運営されていたソーシャルゲームのシナリオを読んだり出来事をまとめたり（2018年～）
 
 - Gist: https://gist.github.com/epser/0f2cb7cff2f36072d468358057e96f81
-- Gitbook（移行中）: https://eps-r.gitbook.io/grimoire/
+- Website: https://grimoire.eps-r.net/
 
 ### Userscript
 
