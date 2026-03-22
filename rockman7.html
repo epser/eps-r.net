@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ロックマン7 パスワードジェネレータ</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{padding:16px}
+h1{margin-bottom:14px;}
+h1, legend {font-family:'Courier New',Courier,monospace;}
+
+/* ── Layout ── */
+.container{
+  display:grid;
+  grid-template-columns:528px 1fr;
+  grid-template-rows:auto auto;
+  grid-template-areas:"left right" "errors right";
+  gap:14px;
+  align-items:start;
+}
+.left-col  {grid-area:left;display:flex;flex-direction:column;gap:8px}
+.right-col {grid-area:right;grid-row:1/3}
+.errors-col{grid-area:errors;align-self:start}
+@media(max-width:660px){
+  .container{grid-template-columns:1fr;grid-template-areas:"left" "right" "errors"}
+  .right-col{grid-row:auto!important}
+}
+
+/* ── Canvas ── */
+canvas{display:block;width:528px;height:579px;image-rendering:pixelated;image-rendering:crisp-edges}
+
+/* ── Text input (ゲーム内パスワード画面を模した表示) ── */
+#pw-text{
+  width:528px;font-family:'Courier New',Courier,monospace;font-size:1.05rem;
+  letter-spacing:3px;text-align:center;background:#000010;color:#e8e840;
+  border:2px solid #334;border-radius:3px;padding:6px 8px;outline:none;
+  transition:border-color .15s
+}
+#pw-text:focus{border-color:#557}
+#pw-text.invalid{border-color:#a44;color:#f88}
+
+/* ── Fieldset ── */
+fieldset{border:1px solid;border-radius:4px;padding:10px 14px;}
+legend{font-size:0.75rem;letter-spacing:1px;padding:0 6px}
+.section{margin-bottom:10px}
+.section:last-child{margin-bottom:0}
+.section-label{font-size:0.75rem;margin-bottom:5px;padding-bottom:2px;border-bottom:1px solid;}
+.check-row{display:flex;flex-wrap:wrap;gap:4px 10px}
+.check-item{display:flex;align-items:center;gap:4px;cursor:pointer;user-select:none;white-space:nowrap}
+.check-item input[type=checkbox]{cursor:pointer}
+.num-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px}
+.num-item{display:flex;align-items:center;gap:5px}
+select{cursor:pointer;padding:3px}
+input[type=number]{width:64px;padding-block:6px}
+
+.description{margin-top:24px;max-width:900px;line-height:1.7}
+
+/* ── Errors / Warnings ── */
+.error-list{list-style:none;display:flex;flex-direction:column;gap:4px}
+.error-list li[data-level=error]  {border-left:3px solid #d44;padding:5px 10px;font-size:0.75rem;border-radius:0 2px 2px 0}
+.error-list li[data-level=warning]{border-left:3px solid #c84;padding:5px 10px;font-size:0.75rem;border-radius:0 2px 2px 0}
+.error-list li[data-level=cc2]    {border-left:3px solid #88c;padding:5px 10px;font-size:0.75rem;border-radius:0 2px 2px 0}
+</style>
+</head>
+<body>
+<h1>Mega Man 7 Password Generator</h1>
+
+<div class="container">
+
+  <!-- 左: キャンバス + テキスト -->
+  <div class="left-col">
+    <canvas id="pw-canvas" width="176" height="193"></canvas>
+    <input type="text" id="pw-text" maxlength="19" spellcheck="false" placeholder="--------">
+  </div>
+
+  <!-- 右: 設定 -->
+  <div class="right-col">
+    <fieldset>
+      <legend>Game State</legend>
+
+      <div class="section">
+        <div class="section-label">プロローグ</div>
+        <div class="check-row">
+          <label class="check-item"><input type="checkbox" data-flag="prologue_nc"> OP未クリア</label>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">前半ボス</div>
+        <div class="check-row">
+          <label class="check-item"><input type="checkbox" data-flag="freeze"> フリーズマン</label>
+          <label class="check-item"><input type="checkbox" data-flag="cloud"> クラウドマン</label>
+          <label class="check-item"><input type="checkbox" data-flag="junk"> ジャンクマン</label>
+          <label class="check-item"><input type="checkbox" data-flag="burst"> バーストマン</label>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">中間フラグ</div>
+        <div class="check-row">
+          <label class="check-item"><input type="checkbox" data-flag="mash"> 博物館クリア</label>
+          <label class="check-item"><input type="checkbox" data-flag="intro_skip"> 後半ボス出現演出を見た</label>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">後半ボス</div>
+        <div class="check-row">
+          <label class="check-item"><input type="checkbox" data-flag="turbo"> ターボマン</label>
+          <label class="check-item"><input type="checkbox" data-flag="spring"> スプリングマン</label>
+          <label class="check-item"><input type="checkbox" data-flag="slash"> スラッシュマン</label>
+          <label class="check-item"><input type="checkbox" data-flag="shade"> シェードマン</label>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">ワイリー</div>
+        <div class="check-row">
+          <label class="check-item"><input type="checkbox" data-flag="wily_open"> ワイリーステージ解放</label>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">強化アイテム</div>
+        <div class="check-row">
+          <label class="check-item"><input type="checkbox" data-flag="hyper_rocket"> ハイパーロケットバスター</label>
+          <label class="check-item"><input type="checkbox" data-flag="e_balancer"> エネルギーバランサー</label>
+          <label class="check-item"><input type="checkbox" data-flag="shop_upgrade"> ショップ強化済フラグ</label>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">コレクタブル</div>
+        <div class="check-row">
+          <label class="check-item"><input type="checkbox" data-flag="r_plate"> R</label>
+          <label class="check-item"><input type="checkbox" data-flag="u_plate"> U</label>
+          <label class="check-item"><input type="checkbox" data-flag="s_plate"> S</label>
+          <label class="check-item"><input type="checkbox" data-flag="h_plate"> H</label>
+          <label class="check-item"><input type="checkbox" data-flag="super_screw"> スーパーネジ</label>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">追加装備</div>
+        <div class="check-row">
+          <label class="check-item"><input type="checkbox" data-flag="rush_search"> ラッシュサーチ</label>
+          <label class="check-item"><input type="checkbox" data-flag="rush_jet"> ラッシュジェット</label>
+          <label class="check-item"><input type="checkbox" data-flag="super_adapter"> スーパーアダプター</label>
+          <label class="check-item"><input type="checkbox" data-flag="blues_shield"> ブルースシールド</label>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">ビート</div>
+        <div class="num-row">
+          <label class="check-item"><input type="checkbox" data-flag="beat_rescue"> 救出済</label>
+          <div class="num-item">
+            <span>所持数</span>
+            <select id="beat-count">
+              <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">消費アイテム</div>
+        <div class="num-row">
+          <div class="num-item"><span>E缶</span>
+            <select id="e-tank"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select>
+          </div>
+          <div class="num-item"><span>W缶</span>
+            <select id="w-tank"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select>
+          </div>
+          <label class="check-item"><input type="checkbox" data-flag="s_tank"> S缶</label>
+          <label class="check-item"><input type="checkbox" data-flag="exit"> EXIT</label>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">ネジ</div>
+        <div class="num-item">
+          <input type="number" id="screws" min="0" max="999" value="0">
+        </div>
+        <div class="section-label">チェックビット</div>
+        <div class="check-row">
+          <label class="check-item"><input type="checkbox" id="cb-flip0" checked> チェックビット0 (7文字目)</label>
+          <label class="check-item"><input type="checkbox" id="cb-flip1"> チェックビット1 (9文字目)</label>
+        </div>
+      </div>
+
+    </fieldset>
+  </div>
+
+  <!-- エラー -->
+  <div class="errors-col">
+    <ul class="error-list" id="error-list"></ul>
+  </div>
+
+</div>
+
+<div class="description">
+</div>
+<script>
+'use strict';
+
+// ===== pw_calc =====
+
+const PW_BASE = [0,7,3,5, 2,5,1,7, 4,4,1,6, 0,3,6,2];
+
+const MASKS = {
+  freeze:       {6:1, 10:4},
+  cloud:        {1:4, 6:1},
+  junk:         {6:1, 8:4},
+  burst:        {6:1, 7:1},
+  mash:         {6:1, 10:1},
+  intro_skip:   {1:1, 6:1},
+  turbo:        {6:1, 15:1},
+  spring:       {4:1, 6:1},
+  slash:        {6:1, 13:2},
+  shade:        {5:1, 6:1},
+  rush_search:  {6:1, 11:1},
+  rush_jet:     {0:2, 6:1},
+  hyper_rocket: {6:1, 12:1},
+  super_screw:  {6:1, 13:4},
+  shop_upgrade: {6:1, 11:2},
+  e_balancer:   {1:2, 6:1},
+  s_tank:       {6:1, 12:4},
+  exit:         {6:1, 15:2},
+  beat_rescue:  {6:1,  9:2},
+  beat_b0:      {6:1, 10:2},
+  beat_b1:      {2:1,  6:1},
+  beat_b2:      {3:2,  6:1},
+  e_tank_b0:    {6:1, 13:1},
+  e_tank_b1:    {6:1,  9:1},
+  e_tank_b2:    {6:1, 15:4},
+  w_tank_b0:    {6:1,  7:2},
+  w_tank_b1:    {3:1,  6:1},
+  w_tank_b2:    {3:4,  6:1},
+  r_plate:      {6:1, 14:1},
+  u_plate:      {6:1,  9:4},
+  s_plate:      {6:1,  0:4},
+  h_plate:      {6:5},
+  super_adapter:{6:1, 14:2},
+  wily_open:    {4:4,  6:1},
+  blues_shield: {6:1,  7:4},
+  prologue_nc:  {6:3},
+};
+
+const CHECKSUM_FLAGS = new Set([
+  'freeze','cloud','junk','burst',
+  'turbo','spring','slash','shade',
+  'mash','intro_skip',
+  'rush_search','rush_jet',
+  'r_plate','u_plate','s_plate','h_plate','super_adapter',
+  'hyper_rocket','super_screw','shop_upgrade','e_balancer','s_tank',
+  'beat_rescue','beat_b0','beat_b1','beat_b2',
+  'e_tank_b0','e_tank_b1','e_tank_b2',
+  'w_tank_b0','w_tank_b1','w_tank_b2',
+  'exit','wily_open','blues_shield','prologue_nc',
+]);
+
+const SCREW_BITS = [[4,2],[2,4],[8,2],[11,4],[5,2],[12,2],[14,4],[0,1],[2,2],[5,4]];
+
+function bitsToFlags(n, b0, b1, b2) {
+  const r = [];
+  if (n & 1) r.push(b0);
+  if (n & 2) r.push(b1);
+  if (n & 4) r.push(b2);
+  return r;
+}
+
+function calcPassword(flagSet, screws) {
+  const pw = [...PW_BASE];
+  let csCount = 0;
+  for (const name of flagSet) {
+    const mask = MASKS[name];
+    if (!mask) continue;
+    for (const [k, v] of Object.entries(mask)) { pw[+k] ^= v; pw[+k] &= 7; }
+    if (CHECKSUM_FLAGS.has(name)) csCount++;
+  }
+  let parity = 0, popcount = 0;
+  for (let bit = 0; bit < 10; bit++) {
+    if ((screws >> bit) & 1) {
+      const [pos, xv] = SCREW_BITS[bit];
+      pw[pos] ^= xv; pw[pos] &= 7;
+      parity ^= 1; popcount++;
+    }
+  }
+  if (parity) { pw[6] ^= 1; pw[6] &= 7; }
+  const total = csCount + popcount;
+  if (total % 4 === 2 || total % 4 === 3) { pw[8] ^= 1; pw[8] &= 7; }
+  return pw;
+}
+
+function pwToStr(pw) {
+  const d = pw.map(v => v === 0 ? 8 : v);
+  return `${d[0]}${d[1]}${d[2]}${d[3]}-${d[4]}${d[5]}${d[6]}${d[7]}-${d[8]}${d[9]}${d[10]}${d[11]}-${d[12]}${d[13]}${d[14]}${d[15]}`;
+}
+
+function decodePassword(s) {
+  const cleaned = s.replace(/-/g, '');
+  if (cleaned.length !== 16 || !/^\d{16}$/.test(cleaned)) return null;
+  const pw   = cleaned.split('').map(c => +c % 8);
+  const diff = pw.map((v, i) => v ^ PW_BASE[i]);
+
+  let screws = 0, parity = 0;
+  for (let bit = 0; bit < 10; bit++) {
+    const [pos, xv] = SCREW_BITS[bit];
+    if ((diff[pos] & xv) === xv) {
+      screws |= (1 << bit); diff[pos] ^= xv; parity ^= 1;
+    }
+  }
+  if (parity) diff[6] ^= 1;
+  diff[8] &= 6;
+
+  const flags = new Set();
+  for (const [name, mask] of Object.entries(MASKS)) {
+    const entries = Object.entries(mask).map(([p,v]) => [+p, v]);
+    const non6 = entries.filter(([p]) => p !== 6);
+    if (non6.length === 0) continue;
+    if (non6.every(([p, xv]) => (diff[p] & xv) === xv)) {
+      flags.add(name);
+      for (const [p, xv] of entries) diff[p] ^= xv;
+    }
+  }
+  for (const [name, mask] of Object.entries(MASKS)) {
+    const entries = Object.entries(mask).map(([p,v]) => [+p, v]);
+    if (entries.every(([p]) => p === 6)) {
+      const xv6 = mask[6];
+      if ((diff[6] & xv6) === xv6) { flags.add(name); diff[6] ^= xv6; }
+    }
+  }
+  return { flags, screws };
+}
+
+// ===== Validation =====
+
+const G1 = ['freeze','cloud','junk','burst'];
+const G2 = ['turbo','spring','slash','shade'];
+
+function validateFlags(flags) {
+  const errors = [], warnings = [];
+  const g1all = G1.every(f => flags.has(f));
+  const g2any = G2.some(f  => flags.has(f));
+  const g2all = G2.every(f => flags.has(f));
+  const hasBeatCount = ['beat_b0','beat_b1','beat_b2'].some(f => flags.has(f));
+
+  const PROGRESS_FLAGS = [...G1, ...G2, 'mash', 'intro_skip', 'wily_open', 'blues_shield'];
+  if (flags.has('prologue_nc') && PROGRESS_FLAGS.some(f => flags.has(f)))
+    errors.push('入力不可: オープニング未クリアと進行系フラグ（ボス・マッシュ・後半演出済・ワイリー・ブルースシールド）は共存できません');
+
+  if (flags.has('intro_skip') && !(g1all && flags.has('mash')))
+    errors.push('入力不可: 後半演出済 には 前半4体撃破 + マッシュ撃破 が必要');
+  if (g2any && !(g1all && flags.has('mash') && flags.has('intro_skip')))
+    errors.push('入力不可: 後半ボス には 前半4体 + マッシュ + 後半演出済 が必要');
+  if (flags.has('wily_open') && !(g1all && g2all && flags.has('mash') && flags.has('intro_skip')))
+    errors.push('入力不可: ワイリーステージ解放 には 全8ボス + マッシュ + 後半演出済 が必要');
+  if (flags.has('blues_shield') && !(g1all && g2all && flags.has('mash') && flags.has('intro_skip')))
+    errors.push('入力不可: ブルースシールド には 全8ボス + マッシュ + 後半演出済 が必要');
+  if (hasBeatCount && !flags.has('beat_rescue'))
+    warnings.push('影響あり: ビートアイテムはビートを救出するまで表示・購入・使用不可になります（クラコレ2ではエラー）');
+  const platesAll = ['r_plate','u_plate','s_plate','h_plate'].every(f => flags.has(f));
+  if (platesAll && !flags.has('super_adapter'))
+    warnings.push('影響あり: RUSHプレート4枚かつスーパーアダプターが無いため、スーパーロックマンを取得できないパスワードです');
+
+  if (g1all && g2all && flags.has('mash') && flags.has('intro_skip') && !flags.has('wily_open'))
+    warnings.push('影響あり: 次回適当なステージをクリアするまでワイリーステージが出現しません');
+
+  if (flags.has('super_screw') && !flags.has('shop_upgrade'))
+    warnings.push('スーパーネジ未引き渡し: ビッグエディーでライトット強化演出が流れます');
+
+  // クラコレ2 固有バリデーション
+  const cc2errors = [];
+  const hasIntro = flags.has('intro_skip');
+  const hasShopOrSearch = flags.has('shop_upgrade') || flags.has('rush_search');
+  if (flags.has('super_screw') && !hasIntro)
+    cc2errors.push('クラコレ2入力不可: スーパーネジ には 後半演出済 が必要');
+  if (flags.has('shop_upgrade') && !flags.has('super_screw'))
+    cc2errors.push('クラコレ2入力不可: ショップ強化 には スーパーネジ が必要');
+  if (flags.has('e_balancer') && !(hasIntro && hasShopOrSearch))
+    cc2errors.push('クラコレ2入力不可: エネルギーバランサー には 後半演出済 + (ショップ強化 or ラッシュサーチ) が必要');
+  if (flags.has('hyper_rocket') && !(hasIntro && hasShopOrSearch))
+    cc2errors.push('クラコレ2入力不可: ハイパーロケットバスター には 後半演出済 + (ショップ強化 or ラッシュサーチ) が必要');
+  if (flags.has('super_adapter') && !platesAll)
+    cc2errors.push('クラコレ2入力不可: スーパーアダプター には R・U・S・Hプレート全取得 が必要');
+  if (flags.has('beat_rescue') && !flags.has('turbo'))
+    cc2errors.push('クラコレ2入力不可: ビート救出 には ターボマン撃破 が必要');
+
+  const etank = (flags.has('e_tank_b0') ? 1 : 0) | (flags.has('e_tank_b1') ? 2 : 0) | (flags.has('e_tank_b2') ? 4 : 0);
+  const wtank = (flags.has('w_tank_b0') ? 1 : 0) | (flags.has('w_tank_b1') ? 2 : 0) | (flags.has('w_tank_b2') ? 4 : 0);
+  if (etank >= 5)
+    cc2errors.push(`クラコレ2入力不可: E缶${etank}個 (最大4個)`);
+  if (wtank >= 5)
+    cc2errors.push(`クラコレ2入力不可: W缶${wtank}個 (最大4個)`);
+
+  return { errors, warnings, cc2errors };
+}
+
+// ===== Canvas =====
+
+const B64_BG = "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";
+const B64_C1 = "UklGRuwBAABXRUJQVlA4TN8BAAAvH8AHAH+gJADQxlIBdftnQBKBudl/5KIYrW1D1f7ffwejiCJRJP5oJJKUHC+vCj2pg6TCSyT25fzH7P88mrVcq3fKmwtc44eAigFMEMAEzooMyJn2P43jTaVMy6nwv0l5zHWwXv4EGlfHzGTlH9mhipNa+/dBu2PdzLZhrI7vOpbbsMeWN6L/CtO2YZTOVxhjWPpVp8dKNGMxE15y2n6GU0Q0jMaU/0sfj5ViosYye8Ugpag2wV/dDUPhK+UlxtTKqkCUSciYXP26RkSqCvcjX9dWV43amueWgbiYgIgWV6tu288xg2hm2pKxurrRZaW8KiuGrzyqopy2CKnVD0TTaIhAjxGhfEPDB45cERJREvbZyzO7uiLfFG0iEvfuZcvi70Io3YFsWYn7rVsDUrRf/RO7I5WYbK17YjttCS0jXnE6csN2dYQvF1teiAvGaze4GnAZmSimPsZPJIy9KDZMXIH5uq2B2MI73iYatk7ATmcmZ7v74Rj7NXquDuBsTy7iyfcW4+I8FADO9ebKJJAxhl2QMStbFmjwCKTvdfe89tD3MHYJIJeCHhulUl5sMAUpgMwQ7oehYlyK85DuPnsbnQN9XGEyeH//PEDPkC8DrSt8Xx+LgXPn7klnX2t9DAA=";
+const B64_C2 = "UklGRvoBAABXRUJQVlA4TO0BAAAvH8AHAG+gJJIVyhID5EuNJgwZwH8tUYwEQLKByBR2+JlItekNopEASHYQmUA1csPRTjAaqcb5j7pU0rkIAKSz5C/eZnleoxoUPyNyINfZ9rZumN6LxvSESiNw3EQt7kX/mPUnIHgWAcJ1TbuH04MPOgfw6rURIDRmcm9TvRtfRET/JyACXkXYkVL2FrrBdLFQlI3kLmm9YUs4B5hCZWIYiBceibrxhv3o3eGW2R5tCogcC7bMROaKy6Qp1kXOvhzN0jS/VHITj+rMhcooq2//rUu5LsC8DWRzLf9gVfWEEDl32I8m+c+1h/9aABx3OugO4OnabkIbpSsqxgHOk7SWEG2MNq2dZzVK9FkTpc24ZZlZ7WiKAR03T9uWi+7Azn7WXPAYkANtW9gS5/s1x+wxcNqy1gfTPegZZvZqsultucAFHHPBhcpCZYNhw+yNMea8XVXeMXsAC/MLC6pVVd155jKhGAsuIFRV1xqnMk0xHEKJqruw4EY/yySNwyjOT4IPLoz+v65RGtR5FPUrOCjSmqj1+VUUnYQyYJKINNEZ8C4K543GD8ooztJm8HjXj6LGHM1RKmW/zx7RCaD1pKZY7vQN+2uI+oAckDo9VS5nhhDYkQdSxv39PGcWog4cnNfkqerdv+FRjpudyJkBAA==";
+const B64_C3 = "UklGRpwBAABXRUJQVlA4TI8BAAAvH8AHAHegJJIVyhIDotCaKLiH/0uimAnA4l6MVVBJLjGIY+d8KhiJJGUjUOErIOmfgRpY5PxH7j08dPlsLnC4gKFCn4hghjB+hnlBjrRtbtuwVPsr5+AqR8Ch5w+PemMx7BFmj6EIfwqrMt0AQ9yA9BGyq7/5nSpXvoOxC42PENF/RW7bNszoPLW/UB8OAET74awxzMfiILdUHA3rmcGe11XCEUVHAwxE1WUhOsTMnmcubzpRdBg2G2Dm3mJ0eXNzkwIYBVdcTxDyf8zljbkNMo/jKA0FbxRHPlJI8ArG9I7eQl1Zw4fNEo6jUlwld7r4dgFgxCyKZfpLvzbpa3MKlKJ2mX7TzibtNDYuILq7TH9ov4M3w6pWfX23twDlASGlrxt0cJoEdo9m6S4RubNw4epH37BBO01r40JUFeLGcsdNWgDqoZmeommRlZ6r6snZh+n0tDLBwmZl88+ktVkyN6zVZZzWk/fjsTVJ/OxIbcJcNi1Q+c8vZMTMpsY7V2WGORVruqiqnkIu+h+IIBQA";
+const B64_C4 = "UklGRq4BAABXRUJQVlA4TKIBAAAvH8AHAGdgpgESxkUVExldPvwtYBSjtW3kv85vfwXDGkXViCJRNBMwyUsF6tjP00rW2MlJhfmPqzbODLLhQyLeTT9KxVxNgb1tQI6zbY6kfLh1Fa07AhdYH+JdBq2/RDiufpVYvxvtASiNqYyIzOcV4f7CRKOS+r9V13KGiP5PABE5Zrb0ny5ktJ6ZLTETUVAgqRp4hx6RyxlJ1QCzhcUe0VzU4J8A6J0t9Mj9yCVyyR0A1uU2+oehGOCQF3o25Fnc2x6FjORpoUffsoz3HLsi0RIzcZHDhvkJM1siosDhaMSP3aNRbbQ5PBo9efho78mo1gyPHu58fbFhHVVe8tF2s/Jh9dabWsNxu8HV6mWvtsvxoMH71Xe1sR3qwcOVq7XLe7ajPmh89mh77dUO11Q1Ptu5u+rGthM0i2rc3XqbPRHFuWa0uX1NP9IREfmSBb2lJGIws0ShZIPklwCg7agKMONggOQ72QBJDAA5quD6dGTJl04a/wAgnu1RyQbAzAAiofVHRQVAApDauZm1QQ3qKX5DSqHka8RnAEdjFelInBsA";
+const B64_C5 = "UklGRswBAABXRUJQVlA4TMABAAAvH8AHAIegpLYVyXJQSCwtiEBTJJIoMw32LY7R2jZEouZH1UgGtoJmDT8arW1DtIL4RyCK9rSKaJUfVXH+Y9399ro0DiocmaLyNShgQQVD0nZRgR7Eje9qQwqKtW3VDSMbrOAPEvTfrpCSmQruPTei/xOw/S/b8m9Yn+ivGg3u8Vie6KpJ+uBvOG8mUrh/YXsh5Y/bSI3APeby/TAbXcJEVZ0RSUoSHr6QBFJNZ0SK1jxss5mqTlQjRpeUuugC2OxUDaSkE9XIiXqNZldV26yI2ZW0kZp4JiJJJ6q9bTVi9BrRVaNpqaMa0XrVqp+JpLFoksSO1Fl5sgBLJlI4yCtoIYUkZp0olBvuyaQZPt8fnnsDRmnu5iUxG8Swz+/T9u+Q+M40YOuvwNhNZz/m7+unrSJ7jrbZq70cp8znR7YLfJ+/tt0o+2id45bsqxGO4mak+fvyV+NlsZe4OUmeH7sAv3sm5XAiKYkE+jx/N7phPxJJZa3EuugzbhvDu1RuyqxmZ3DapXI33GlguCFx1gqwbRhZacIpq0sGkU4TVEBtu+Q8h5ujk1VAvmKkKJ5xwylLpSEWjKigeDpuSEVxQyor";
+const B64_C6 = "UklGRt4BAABXRUJQVlA4TNIBAAAvH8AHAIegJgAISQSjGuJIKoIKRuN333hRjESSYt9+hLdEIALBkUQACRGQRmvbEK1hBTurRhB/tIIo/vrj/Mc0P778ZgiwoHLX5GNAGBehJ8FiClWxhJjDJwaJkWyHbWOIRB4+wA+w/3YJclLCu4j+T8C9V7i/xp77s9wdq9dnfwHe5G6vjHpguz/0Z5udotuRhX4A1T2sP/8T5ssqdtSDQnV/2OZ+KrrtLDa9HsXswOZLSdu9+uA/RVlZTK9+uOjPNl9WxqKYXu3uWiwgHgI/FLPYGd2Oozhn2Es3miZ6VGAWO6M7ig1hT91yYu2Yxc7w8bIeWYxix8xiDu/WtFh2lqkXZpY9rPkwuOTbxPk2X24XK2pszMq3pbf8kNbKYsNcwg+cKFzjUVKsLGYubWwn820Vk1oJloG7aTqtsF0DKMaw5sIwuYfWNGH3cKUpNyzm7mqCsLsdlaG1gxRzcV+jfTh0Ni1SDWFsbga0L7/RBG2cTc8bLkYTH+A0YDfB/RhNNIXfDGBOxUZAY8h+OZt/QPs02jVku3L+wC1+nIq6mV5qV7uGiE777U9F5X7m9NKgXaMJaJtTUbl3MNWuwTUagjjtpjD3l6VxDa7RENAQcL8C";
+const B64_C7 = "UklGRpQBAABXRUJQVlA4TIgBAAAvH8AHAIegpraWjEODf3BjdHQzA0mNYCgLGMVIACRGJljZ5B03EY1WX1i5YTQAi8VFkbjI8d5xhro4//H+27Rl+yrDNkEdAIZ7cCBVQjyZqSjYY29oLQPESLbCNhEPiS8b7PRfLny+XMK/iP4zcNtIUZpZOoZXGGiP/Ri9v130hFgB4GpArhCqPxdmQR8AzhBeAQCDBRBMVlG1D9aooGt/3pfnrNpTDKanxxVnGBXalEcuIP2iG3gFO/9wKYw1k22pq3ODrLK2JtZERJ5u8aKq4Tfq/ty7AupaTFnT8bkPYB6Xuw0T05SvzMnxSWx7UdYo08W9zuc5ts+AUzXguCGPOykNME0bJs863wG5lostu7bOLd9uuShv8A7XmaiYF4oJUxdlsrpW1LW/dxPuRvvoanzHQiNxHxRMfQhwt2I4TN39tVG6+9Una7L+fefTiD5xRR/eeAXeMly9B5vRCqBiiFl9bO4rO+DZDFfcnEnYkT2OqMCD/aHPM7D/WNejcaHzglRoPHI9JA==";
+const B64_C8 = "UklGRvIBAABXRUJQVlA4TOYBAAAvH8AHAH+gNrYNK5QakVKMQtQtI5Pa/5ZjpraNv/4IaqihgcDGr4HVSAQztW0YrSKIQBWV1FBHjT/+0Wqc/1hzP19jxEId5UOJ3BSW4RaEBlqKBOEkg3mBHGnb2zZiqxKtNwPjCzBsKHOZdxVaZ57gd3bpVbeJhD6Bm0r8nSsPxrnkyPEIm8MFNI7Kd4jo/wSw253R3DtDmpk5353RANAD22/tstgBUcF7w3y8azTgLu/MaA+e5fpWpmda2l3OdMF7Y5mPtTteO9UAPHiWuY6147W1lh7kdg21Wq1cZAXvDXNdr80QUdNd3gEs8wyBGru7pBtCM/fQagbsEjCoEUcvMN9amrH9smKK8byp5y0zesb/fUMyHzvLTFWiLLkqPlVy5JZZm2nKEiGO6sm/PruYNn1eDLmerXVg/Ko4+h/8BzMTWvHD+xNXv969PwGA8RnFILj/WzyeiOLIt8cGUSDlWDAW+XF0I3WfTah8JeUj5VeLQepcFql7j6SvpEymJuDylYp6HodSSvm8WrPOCTPsp8VQSimTij3+fHmlIkfjYqikVC9s7TQXRvlAJQyCKGG99TnP7vjYMpXwZWp5+XjtM6DeHzcMYJmpdrzW0sMjM43dpmVmohqAOz62dudNH6Ll11BY7Qc=";
+
+const IMG_BG = new Image();
+const IMG_CHIP = [null];
+(function() {
+  IMG_BG.src = 'data:image/webp;base64,' + B64_BG;
+  const srcs = [null,B64_C1,B64_C2,B64_C3,B64_C4,B64_C5,B64_C6,B64_C7,B64_C8];
+  for (let d = 1; d <= 8; d++) {
+    const img = new Image();
+    img.src = 'data:image/webp;base64,' + srcs[d];
+    IMG_CHIP.push(img);
+  }
+})();
+
+const canvas = document.getElementById('pw-canvas');
+const ctx    = canvas.getContext('2d');
+
+function drawCanvas(pw) {
+  ctx.clearRect(0, 0, 176, 193);
+  if (IMG_BG.complete) ctx.drawImage(IMG_BG, 0, 0);
+  for (let i = 0; i < 16; i++) {
+    const col = i % 4, row = Math.floor(i / 4);
+    const dx = 12 + col * 40;
+    const dy =  9 + row * 40;
+    const digit = pw[i] === 0 ? 8 : pw[i];
+    const img = IMG_CHIP[digit];
+    if (img && img.complete) ctx.drawImage(img, dx, dy);
+  }
+}
+
+function _waitImages(cb) {
+  const imgs = [IMG_BG, ...IMG_CHIP.slice(1)];
+  Promise.all(imgs.map(img => new Promise(r => {
+    if (img.complete) { r(); return; }
+    img.onload = r; img.onerror = r;
+  }))).then(cb);
+}
+
+// ===== State =====
+
+function collectState() {
+  const flags = new Set();
+  document.querySelectorAll('[data-flag]:checked').forEach(el => flags.add(el.dataset.flag));
+
+  const beat  = parseInt(document.getElementById('beat-count').value) || 0;
+  const etank = parseInt(document.getElementById('e-tank').value)     || 0;
+  const wtank = parseInt(document.getElementById('w-tank').value)     || 0;
+  const screws = Math.max(0, Math.min(999, parseInt(document.getElementById('screws').value) || 0));
+
+  for (const f of bitsToFlags(beat,  'beat_b0',   'beat_b1',   'beat_b2'))   flags.add(f);
+  for (const f of bitsToFlags(etank, 'e_tank_b0', 'e_tank_b1', 'e_tank_b2')) flags.add(f);
+  for (const f of bitsToFlags(wtank, 'w_tank_b0', 'w_tank_b1', 'w_tank_b2')) flags.add(f);
+
+  return { flags, screws };
+}
+
+function applyState(decoded) {
+  document.querySelectorAll('[data-flag]').forEach(el => {
+    el.checked = decoded.flags.has(el.dataset.flag);
+  });
+
+  const bitsOf = (...names) => names.reduce((n, f, i) => n | (decoded.flags.has(f) ? (1 << i) : 0), 0);
+
+  document.getElementById('beat-count').value = Math.min(4, bitsOf('beat_b0','beat_b1','beat_b2'));
+  document.getElementById('e-tank').value     = Math.min(7, bitsOf('e_tank_b0','e_tank_b1','e_tank_b2'));
+  document.getElementById('w-tank').value     = Math.min(7, bitsOf('w_tank_b0','w_tank_b1','w_tank_b2'));
+  document.getElementById('screws').value     = decoded.screws;
+}
+
+// ===== Update =====
+
+let suppressUpdate = false;
+
+function renderErrors(flags) {
+  const ul = document.getElementById('error-list');
+  ul.innerHTML = '';
+  const { errors, warnings, cc2errors } = validateFlags(flags);
+  for (const msg of errors) {
+    const li = document.createElement('li');
+    li.dataset.level = 'error';
+    li.textContent = '✕ ' + msg;
+    ul.appendChild(li);
+  }
+  for (const msg of cc2errors) {
+    const li = document.createElement('li');
+    li.dataset.level = 'cc2';
+    li.textContent = '✕ ' + msg;
+    ul.appendChild(li);
+  }
+  for (const msg of warnings) {
+    const li = document.createElement('li');
+    li.dataset.level = 'warning';
+    li.textContent = '⚠ ' + msg;
+    ul.appendChild(li);
+  }
+}
+
+function update(keepBits = false) {
+  if (suppressUpdate) return;
+  const { flags, screws } = collectState();
+  const pw = calcPassword(flags, screws);
+
+  const cb0 = document.getElementById('cb-flip0');
+  const cb1 = document.getElementById('cb-flip1');
+
+  let bitError = false;
+  if (!keepBits) {
+    // フラグ変更時: 正しいビット値にチェックボックスを合わせる（エラー不要）
+    // suppressUpdateでchange再発火を防ぐ
+    suppressUpdate = true;
+    cb0.checked = (pw[6] & 1) === 1;
+    cb1.checked = (pw[8] & 1) === 1;
+    suppressUpdate = false;
+  } else {
+    // ユーザーが手動変更: チェックボックスの値をビットに強制
+    if ((pw[6] & 1) !== (cb0.checked ? 1 : 0)) pw[6] ^= 1;
+    if ((pw[8] & 1) !== (cb1.checked ? 1 : 0)) pw[8] ^= 1;
+    const correctPw = calcPassword(flags, screws);
+    bitError = (cb0.checked ? 1 : 0) !== (correctPw[6] & 1)
+            || (cb1.checked ? 1 : 0) !== (correctPw[8] & 1);
+  }
+
+  drawCanvas(pw);
+
+  const textEl = document.getElementById('pw-text');
+  textEl.value = pwToStr(pw);
+  textEl.classList.toggle('invalid', bitError);
+
+  renderErrors(flags);
+
+  if (bitError) {
+    const ul = document.getElementById('error-list');
+    const li = document.createElement('li');
+    li.dataset.level = 'error';
+    li.textContent = '✕ チェックビットエラー: このパスワードはゲームで受理されません';
+    ul.insertBefore(li, ul.firstChild);
+  }
+}
+
+// ===== Events =====
+
+document.querySelectorAll('[data-flag]').forEach(el => el.addEventListener('change', () => update()));
+document.getElementById('cb-flip0').addEventListener('change', () => update(true));
+document.getElementById('cb-flip1').addEventListener('change', () => update(true));
+['beat-count','e-tank','w-tank'].forEach(id => document.getElementById(id).addEventListener('change', () => update()));
+document.getElementById('screws').addEventListener('input', () => update());
+
+document.getElementById('pw-text').addEventListener('input', function () {
+  const digits = this.value.replace(/[^0-9]/g, '');
+  if (digits.length !== 16) {
+    this.classList.toggle('invalid', digits.length > 0);
+    return;
+  }
+  const formatted = `${digits.slice(0,4)}-${digits.slice(4,8)}-${digits.slice(8,12)}-${digits.slice(12,16)}`;
+  const decoded = decodePassword(formatted);
+  if (!decoded) { this.classList.add('invalid'); return; }
+
+  // チェックビット・フラグ反映: すべてsuppressUpdate内でまとめて行う
+  const inputPw = digits.split('').map(c => +c % 8);
+  const expectedPw = calcPassword(decoded.flags, decoded.screws);
+  const checksumOk = (inputPw[8] & 1) === (expectedPw[8] & 1);
+  this.classList.toggle('invalid', !checksumOk);
+  suppressUpdate = true;
+  document.getElementById('cb-flip0').checked = (inputPw[6] & 1) === 1;
+  document.getElementById('cb-flip1').checked = (inputPw[8] & 1) === 1;
+  applyState(decoded);
+  suppressUpdate = false;
+
+  drawCanvas(inputPw);
+  renderErrors(collectState().flags);
+
+  if (!checksumOk) {
+    const ul = document.getElementById('error-list');
+    const li = document.createElement('li');
+    li.dataset.level = 'error';
+    li.textContent = '✕ チェックビットエラー: このパスワードはゲームで受理されません';
+    ul.insertBefore(li, ul.firstChild);
+  }
+});
+
+// 初期描画
+_waitImages(update);
+</script>
+</body>
+</html>
