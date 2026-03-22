@@ -55,6 +55,19 @@ select{cursor:pointer;padding:3px}
 input[type=number]{width:64px;padding-block:6px}
 
 .description{margin-top:24px;max-width:900px;line-height:1.7}
+.description h2{font-size:1.5rem;margin:2rem 0 1rem;padding-bottom:.3em;border-bottom:1px solid}
+.description h3{font-size:1.15rem;margin:1.5rem 0 .6rem}
+.description h4{font-size:1rem;margin:1.2rem 0 .4rem}
+.description p{margin-bottom:.9em}
+.description ul,.description ol{padding-left:1.5em;margin-bottom:.9em}
+.description li{margin-bottom:.25em}
+.description pre{background:#f6f8fa;border:1px solid #d0d7de;border-radius:6px;padding:12px 16px;overflow-x:auto;margin-bottom:.9em}
+.description code{font-family:'Courier New',Courier,monospace;font-size:.85em}
+.description pre code{font-size:.8rem}
+.description img{max-width:100%;height:auto;display:block;margin:.5em 0}
+.description table{border-collapse:collapse;margin-bottom:.9em;width:100%}
+.description th,.description td{border:1px solid;padding:5px 10px;text-align:left;vertical-align:top}
+.description thead th{background:rgba(128,128,128,.08)}
 
 /* ── Errors / Warnings ── */
 .error-list{list-style:none;display:flex;flex-direction:column;gap:4px}
@@ -201,6 +214,468 @@ input[type=number]{width:64px;padding-block:6px}
 </div>
 
 <div class="description">
+<article>
+
+<h2>解説</h2>
+
+<h3>基本仕様</h3>
+
+<p>『ロックマン7 宿命の対決！』はパスワードコンティニュー形式のタイトルだ。上の画面の通り、1から8までの数字が4行4列、合計16個並んでいる。</p>
+
+<p>プレイヤーはグリッド上のカーソルを方向キーで動かし、Yボタンで数字を増やし、Bボタンで数字を減らすことができる（『クラシックスコレクション2』Steam版ではXボタンで増え、Yボタンで減る）。8から増やすと1に、1から減らすと8に数字はループする。</p>
+
+<p>STARTボタンを押すとパスワードを確定する（『クラシックスコレクション2』版ではAボタンで確定）。パスワードが無事に受理されると画面はフェードアウトし、ステージセレクト画面やカットシーンなど、保存された進行状況に応じた場面からゲームを再開できる。</p>
+
+<p><img src="data:image/webp;base64,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"></p>
+
+<p>確定したパスワードが誤っていると、Dr.ワイリーのペットであるレゲエ氏がグリッドを埋め尽くし、パスワードをすべて1にしてしまう。</p>
+
+<p>XボタンかAボタン（『クラシックスコレクション2』Steam版ではBボタン）を押すとタイトル画面に戻れる。</p>
+
+<p>読む方向については左上から右下まで、横に読むものとされる。これは画面の枠デザイン上もそうなっているし、カーソルを右に動かしていくと次の行の左端に着くことからもわかる（縦だと同じ列の間でループする）。エンディング後に表示される隠しパスワードも横書きである。</p>
+
+<p>パスワード入力画面の初期値は <code>1111-1111-1111-1111</code> だが、ゲームを進めてパスワードを表示した後にリセットした場合はメモリに内容が残っており、最後に表示されたパスワードがあらかじめ入力されている。</p>
+
+<h3>数値の内部表現</h3>
+
+<p>パスワードの数字は0を含まない1から8までの、3ビットで表現される。16桁あるので <strong>48ビット</strong> が最大の情報量となる。</p>
+
+<p>ビット列と数字の対応は以下の通り。</p>
+
+<table>
+ <thead>
+  <tr>
+   <th>内部表現</th>
+   <th>表示</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr><td>001</td><td>1</td></tr>
+  <tr><td>010</td><td>2</td></tr>
+  <tr><td>011</td><td>3</td></tr>
+  <tr><td>100</td><td>4</td></tr>
+  <tr><td>101</td><td>5</td></tr>
+  <tr><td>110</td><td>6</td></tr>
+  <tr><td>111</td><td>7</td></tr>
+  <tr><td>000</td><td>8</td></tr>
+ </tbody>
+</table>
+
+<h3>格納される情報</h3>
+
+<p>パスワードで扱う進行状況や所持状態は以下のものになる。合計は48ビット中の <strong>46ビット</strong> で、残りの2ビットは整合性チェック用に消費する。</p>
+
+<ul>
+  <li>進行状況（12bit）
+    <ol>
+      <li>オープニングステージ</li>
+      <li>フリーズマン</li>
+      <li>クラウドマン</li>
+      <li>ジャンクマン</li>
+      <li>バーストマン</li>
+      <li>ターボマン</li>
+      <li>スプリングマン</li>
+      <li>スラッシュマン</li>
+      <li>シェードマン</li>
+      <li>博物館ステージ</li>
+      <li>ステージセレクト画面のボス追加演出</li>
+      <li>ワイリーステージ出現デモ</li>
+    </ol>
+  </li>
+  <li>アップグレード（3bit）
+    <ol>
+      <li>ハイパーロケットバスター</li>
+      <li>エネルギーバランサー</li>
+      <li>強化ライトット（ショップ強化）</li>
+    </ol>
+  </li>
+  <li>条件アイテム（5bit）
+    <ol>
+      <li>Rプレート</li>
+      <li>Uプレート</li>
+      <li>Sプレート</li>
+      <li>Hプレート</li>
+      <li>スーパーネジ</li>
+    </ol>
+  </li>
+  <li>追加装備（4bit）
+    <ol>
+      <li>ラッシュサーチ</li>
+      <li>ラッシュジェット</li>
+      <li>スーパーアダプター</li>
+      <li>ブルースシールド</li>
+    </ol>
+  </li>
+  <li>ビート（4bit）
+    <ol>
+      <li>ビートを助けたフラグ</li>
+      <li>ビートアイテム所持数（4個、3bit）</li>
+    </ol>
+  </li>
+  <li>消費アイテム（8bit）
+    <ol>
+      <li>E缶（4個、3bit）</li>
+      <li>W缶（4個、3bit）</li>
+      <li>S缶（1個）</li>
+      <li>EXITアイテム（1個）</li>
+    </ol>
+  </li>
+  <li>ネジ（0〜999個、10bit）</li>
+</ul>
+
+<h3>格納されない情報</h3>
+
+<p>前述した以外の情報、特に以下のような情報はパスワードには保存されない。</p>
+
+<ul>
+  <li>残機</li>
+  <li>ブルースシールドのためのブルース遭遇フラグ</li>
+  <li>巨大ネジ（スーパーネジではない）の取得状況</li>
+  <li>ワイリーステージ2以降の進行状況</li>
+</ul>
+
+<p>クリア後に表示される特殊パスワードはワイリーステージ3からスタートするが、ワイリーステージ2のクリア情報といったものはパスワードに記録できない。あくまでも特定のパスワードのために用意された専用処理である。</p>
+
+<h3>パスワード詳説</h3>
+
+<h4>基本的な考え方</h4>
+
+<p>このページでは、ベースのパスワードとしてオープニングステージクリア直後のパスワードを使用している。</p>
+
+<p>ロックマン7のパスワードは、このOP直後（または直前）のパスワードを基本形にしている可能性が高い。</p>
+
+<pre><code>8735-2517-4416-8362</code></pre>
+
+<p>このベースパスワードを、まず2進数に変換する。</p>
+
+<pre><code> 8   7   3   5     2   5   1   7     4   4   1   6     8   3   6   2
+000 111 011 101 - 010 101 001 111 - 100 100 001 110 - 000 011 110 010</code></pre>
+
+<p>上のように平たく伸ばせば、0か1のフラグが48個並ぶことになる。</p>
+
+<p>ここで入れたい情報に対応する桁にXORをかけ、反転させる。それぞれの情報は固有の桁位置を持ち、重複することはない。</p>
+
+<pre><code># フリーズマン撃破で、11文字目（3行3列）の最上位ビットが反転する
+000 000 000 000 - 000 000 000 000 - 000 000 100 000 - 000 000 000 000
+
+# ラッシュサーチ取得で、12文字目（3行4列）の最下位ビットが反転する
+000 000 000 000 - 000 000 000 000 - 000 000 000 001 - 000 000 000 000
+
+# E缶1個取得で、14文字目(4行2列)の最下位ビットが反転する
+000 000 000 000 - 000 000 000 000 - 000 000 000 000 - 000 001 000 000
+
+# 結果、ベースパスワードは以下のように変わる
+ 8   7   3   5     2   5   1   7     4   4   5   7     8   2   6   2
+000 111 011 101 - 010 101 001 111 - 100 100 101 111 - 000 010 110 010</code></pre>
+
+<p>更に、上の加工で反転させたフラグの数に応じて以下の変更を加える。</p>
+
+<pre><code># 変更フラグ数が奇数の場合、7文字目(2行3列)最下位ビットが反転する
+000 000 000 000 - 000 000 001 000 - 000 000 000 000 - 000 000 000 000
+
+# 変更フラグ数を4で割った余りが2か3の場合、9文字目(3行1列)の最下位ビットが反転する
+000 000 000 000 - 000 000 000 000 - 001 000 000 000 - 000 000 000 000
+
+# 結果、ベースパスワードは以下のように変わる
+ 8   7   3   5     2   5   8   7     5   4   5   7     8   2   6   2
+000 111 011 101 - 010 101 000 111 - 101 100 101 111 - 000 010 110 010</code></pre>
+
+大まかには、アイテムやネジを取れば取るほどパスワードの数字は増えたり減ったりを繰り返して変わってゆく（ネジは128, 256, 512のようなキリのいい数だと変化量が小さくなるが……）。終盤のパスワードが序盤とあまり似ていないのは必然といえる。
+
+<h4>レイアウト</h4>
+
+<table>
+    <thead>
+        <tr>
+            <th>行・列</th>
+            <th>数値</th>
+            <th>情報</th>
+        </tr>
+     </thead>
+     <tbody>
+        <tr>
+            <th rowspan="3">1行 1列<br>(初期値8)</th>
+            <td>1</td>
+            <td>ネジbit7 (値128)</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>ラッシュジェット</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Sプレート</td>
+        </tr>
+        <tr>
+            <th rowspan="3">1行 2列<br>(初期値7)</th>
+            <td>1</td>
+            <td>後半ステージ出現演出を見た</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>エネルギーバランサー</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>クラウドマン撃破</td>
+        </tr>
+        <tr>
+            <th rowspan="3">1行 3列<br>(初期値3)</th>
+            <td>1</td>
+            <td>ビートアイテム所持数bit1（値2）</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>ネジbit8 (値256)</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>ネジbit1 (値2)</td>
+        </tr>
+        <tr>
+            <th rowspan="3">1行 4列<br>(初期値5)</th>
+            <td>1</td>
+            <td>W缶bit1（値2）</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>ビートアイテム所持数bit2（値4）</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>W缶bit2（値4）</td>
+        </tr>
+        <tr>
+            <th rowspan="3">2行 1列<br>(初期値2)</th>
+            <td>1</td>
+            <td>スプリングマン撃破</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>ネジbit0 (値1)</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>ワイリーステージ解放</td>
+        </tr>
+        <tr>
+            <th rowspan="3">2行 2列<br>(初期値5)</th>
+            <td>1</td>
+            <td>シェードマン撃破</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>ネジbit4 (値16)</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>ネジbit9 (値512)</td>
+        </tr>
+        <tr>
+            <th rowspan="3">2行 3列<br>(初期値1)</th>
+            <td>1</td>
+            <td>エラーチェックbit0（エラーチェック以外の適用XOR数を4で割った余りが1か3）</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>プロローグ未クリア（値1も同時に反転）</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Hプレート（値1も同時に反転）</td>
+        </tr>
+        <tr>
+            <th rowspan="3">2行 4列<br>(初期値7)</th>
+            <td>1</td>
+            <td>バーストマン撃破</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>W缶bit0（値1）</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>ブルースシールド</td>
+        </tr>
+        <tr>
+            <th rowspan="3">3行 1列<br>(初期値4)</th>
+            <td>1</td>
+            <td>エラーチェックbit1（エラーチェック以外のXOR回数を4で割った余りが2か3）</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>ネジbit2 (値4)</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>ジャンクマン撃破</td>
+        </tr>
+        <tr>
+            <th rowspan="3">3行 2列<br>(初期値4)</th>
+            <td>1</td>
+            <td>E缶bit1（値2）</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>ビート救出</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Uプレート</td>
+        </tr>
+        <tr>
+            <th rowspan="3">3行 3列<br>(初期値1)</th>
+            <td>1</td>
+            <td>マッシュ撃破（博物館クリア）</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>ビートアイテム所持数bit0（値1）</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>フリーズマン撃破</td>
+        </tr>
+        <tr>
+            <th rowspan="3">3行 4列<br>(初期値6)</th>
+            <td>1</td>
+            <td>ラッシュサーチ</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>ショップ強化</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>ネジbit3 (値8)</td>
+        </tr>
+        <tr>
+            <th rowspan="3">4行 1列<br>(初期値8)</th>
+            <td>1</td>
+            <td>ハイパーロケットバスター</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>ネジbit5 (値32)</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>S缶</td>
+        </tr>
+        <tr>
+            <th rowspan="3">4行 2列<br>(初期値3)</th>
+            <td>1</td>
+            <td>E缶bit0（値1）</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>スラッシュマン撃破</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>スーパーネジ</td>
+        </tr>
+        <tr>
+            <th rowspan="3">4行 3列<br>(初期値6)</th>
+            <td>1</td>
+            <td>Rプレート</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>スーパーアダプター</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>ネジbit6 (値64)</td>
+        </tr>
+        <tr>
+            <th rowspan="3">4行 4列<br>(初期値2)</th>
+            <td>1</td>
+            <td>ターボマン撃破</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>EXITアイテム</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>E缶bit2（値4）</td>
+        </tr>
+</tbody>
+</table>
+
+<h4>エラーチェック機構(1) チェックビットの存在</h4>
+
+<p>(fig)</p>
+
+<p>パスワードにムダな文字はほどんど無いことは上の表で示せたことと思う。その中で2ビット分、ゲームの進行に関係のないビットがあることを書いてきた。</p>
+
+<pre><code># 変更フラグ数が奇数の場合、7文字目(2行3列)最下位ビットが反転する
+000 000 000 000 - 000 000 001 000 - 000 000 000 000 - 000 000 000 000
+
+# 変更フラグ数を4で割った余りが2か3の場合、9文字目(3行1列)の最下位ビットが反転する
+000 000 000 000 - 000 000 000 000 - 001 000 000 000 - 000 000 000 000</code></pre>
+
+<p>この2ビットは、つまり <strong>mod 4</strong>の結果の下位ビットと上位ビットにあたる。変更したフラグの数を4で割り、1か3だったら7文字目の最下位ビットが、2か3だったら9文字目の最下位ビットが変化するわけだ。</p>
+
+<p>（言い方を変えれば、頭からフラグをひとつ適用するたびに7文字目の最下位ビットにXORを掛け、ふたつ適用するたびに9文字目の最下位ビットにXORを掛けているともいえる。ゲームでの実装がどうなっているかまでは調べていないが……）</p>
+
+<p>打ち間違いを防ぐという意味ではかなり効果があり、これだけでも異常なネジの数やフラグの増減などの事故の多くが防がれるはずだが、それでも2ビットという非常に限られたチェックビットである都合上、「1と2」「5と6」など一部の変化には弱い。</p>
+
+<ul>
+    <li>8735-2517-5<strong style="color: red">5</strong>16-8262: E缶3個所持</li>
+    <li>8735-2517-5<strong style="color: red">6</strong>16-8262: E缶1個所持、ビート救出フラグ有り、ビートアイテム0個</li>
+</ul>
+
+<p>たとえばこの2つのパスワードは同じ箇所の1文字、数字も1しか差がないうえに、どちらもきちんと入力できてしまう。まあ、こういうこともある。</p>
+
+<h4>エラーチェック機構(2) バリデータの存在</h4>
+
+<p>パスワードが数値構造的に正しいかを確認するのがエラーチェックビットだった。それに対し、数値が合っていても意味がおかしいパスワードを弾く仕組みがバリデータである。</p>
+
+<p>基本的には進行状況に関する矛盾を阻むようなロジックが組まれており、以下のエラーを確認している。</p>
+
+<ul>
+    <li>オープニングステージ未クリアの場合は、ボス・博物館・後半ステージ演出・ワイリー・ブルースシールドは不可</li>
+    <li>後半ボス出現演出を見たフラグのためには、前半4ボスとマッシュ（博物館）の撃破フラグが必要</li>
+    <li>後半ボス撃破フラグのためには、後半ボス出現演出を見たフラグが必要</li>
+    <li>ワイリーステージ出現とブルースシールドのためには、後半4ボスの撃破フラグが必要</li>
+</ul>
+
+<p>また、『クラシックスコレクション2』版では多くのフラグに対して前提条件のバリデーションが追加されている。</p>
+
+<ul>
+    <li>エネルギーバランサー: 「後半ボス出現演出を見た」を満たした上で、「スーパーネジ＋ショップ強化フラグ」または「ラッシュサーチ」を持っていないとパスワードエラー</li>
+    <li>ハイパーロケットバスター: 同上（スーパーアダプター自体は必要ない。厳密にはラッシュサーチ無し・スーパーアダプター無しでハイパーロケットバスターの開発は出来ないはずだが、見過ごされた？）</li>
+    <li>スーパーネジ: 「後半ボス出現演出を見た」を満たさないとパスワードエラー</li>
+    <li>ショップ強化フラグ: 「スーパーネジ」を満たさないとパスワードエラー</li>
+    <li>ビート救出フラグ: ターボマンを倒していないとパスワードエラー</li>
+    <li>ビート所持数: 「ビート救出」を満たさないとパスワードエラー</li>
+    <li>ラッシュサーチ: OP未クリアではパスワードエラー</li>
+    <li>ラッシュジェット: OP未クリアではパスワードエラー（サンダーストライクは無くてもよい）</li>
+    <li>E缶: OP未クリア、または5個～7個設定時にパスワードエラー</li>
+    <li>W缶: OP未クリア、または5個～7個設定時にパスワードエラー</li>
+    <li>S缶: OP未クリアではパスワードエラー</li>
+    <li>EXIT: OP未クリアではパスワードエラー</li>
+    <li>Rプレート: OP未クリアではパスワードエラー</li>
+    <li>Uプレート: OP未クリアではパスワードエラー</li>
+    <li>Sプレート: OP未クリアではパスワードエラー（フリーズクラッカーは無くてもよい）</li>
+    <li>Hプレート: OP未クリアではパスワードエラー</li>
+    <li>スーパーアダプター: R・U・S・Hプレートを入手していないとパスワードエラー</li>
+</ul>
+
+<p>ほとんどのフラグに制限がついた結果、「OP未クリア」状態ではネジくらいしか持って行けなくなってしまった。</p>
+
+<p>逆に言えば、スーパーファミコン版では大概なんでも無理がきいたということでもある。E缶W缶を5個以上持っていても、プレート無しでスーパーアダプターを持っていても怒られはしなかったのだ。</p>
+
+<h4>パスワードのデコード</h4>
+
+<p>パスワードを解読して情報を取り出すには、まずベースパスワードの値をXORしてやると、設定されたフラグ値を取り出すことができる。</p>
+
+<p>ゲーム側としてはそのフラグ値の羅列に対し、対応するビット列のフラグに合わせてゲームのステートをオンにしてやり、またオンにした回数と前述のチェックビットを比較して、正常性をチェックすればよい。</p>
+
+</article>
+
 </div>
 <script>
 'use strict';
