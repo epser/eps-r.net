@@ -28,11 +28,11 @@ h1, legend {font-family:'Courier New',Courier,monospace;}
 }
 
 /* ── Canvas ── */
-canvas{display:block;width:528px;height:579px;image-rendering:pixelated;image-rendering:crisp-edges}
+canvas{display:block;width:min(528px,100%);height:auto;image-rendering:pixelated;image-rendering:crisp-edges}
 
 /* ── Text input (ゲーム内パスワード画面を模した表示) ── */
 #pw-text{
-  width:528px;font-family:'Courier New',Courier,monospace;font-size:1.05rem;
+  width:100%;max-width:528px;font-family:'Courier New',Courier,monospace;font-size:1.05rem;
   letter-spacing:3px;text-align:center;background:#000010;color:#e8e840;
   border:2px solid #334;border-radius:3px;padding:6px 8px;outline:none;
   transition:border-color .15s
