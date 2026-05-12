@@ -1,1 +1,18 @@
+title: eps-r.net
+url: "https://eps-r.net"
+baseurl: ""
+
 markdown: GFM
+permalink: pretty
+
+# プレビュー時にビルド対象から除外するもの
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - README.md
+  - .gitignore
+  - .git
+
+# 開発時のみ有効にしたい場合は _config.dev.yml に分離する手もある
+# プレビュー時のホスト: bundle exec jekyll serve --livereload --force_polling
