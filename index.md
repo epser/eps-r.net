@@ -3,7 +3,7 @@
 ## こんにちは
 
 <p>
-  <img src="https://raw.githubusercontent.com/epser/eps-r.net/refs/heads/main/penguin.jpg" style="width:20rem;max-width:100%" alt="ペンギン像" /><br>
+  <img src="penguin.jpg" style="width:20rem;max-width:100%" alt="ペンギン像" /><br>
   2018年、静岡県伊東市
 </p>
 
@@ -36,8 +36,8 @@
 
 ### Chaos Front (Demo) 日本語ローカライズ
 
-<img src="https://raw.githubusercontent.com/epser/eps-r.net/refs/heads/main/cf_demo_1.jpg" style="width:35rem;max-width:auto;">
-<img src="https://raw.githubusercontent.com/epser/eps-r.net/refs/heads/main/cf_demo_2.jpg" style="width:35rem;max-width:auto;">
+<img src="cf_demo_1.jpg" style="width:35rem;max-width:auto;">
+<img src="cf_demo_2.jpg" style="width:35rem;max-width:auto;">
 
 ゲーム翻訳。ストラテジーゲーム[『Chaos Front』デモ版](https://store.steampowered.com/app/3525590/Chaos_Front_Demo/)に外部協力者として翻訳を提供（2025年）
 
@@ -46,7 +46,7 @@
 
 ### Japanese Mecha Anime Style Dialogue Mod for WARBORN
 
-<img src="https://raw.githubusercontent.com/epser/eps-r.net/refs/heads/main/warborn.gif" style="width:30rem;max-width:auto;">
+<img src="warborn.gif" style="width:30rem;max-width:auto;">
 
 ゲーム再翻訳Mod。ストラテジーゲーム『[WARBORN](https://store.steampowered.com/app/918950/_/)』の破綻した日本語訳をロボットアニメ調にやり直し、フォントの見栄えを修正したり、幾つかの機能を追加したりする（2024年）
 
@@ -59,8 +59,8 @@
 
 ### Inertial Drift Japanese localization improving mod
 
-<img src="https://raw.githubusercontent.com/epser/eps-r.net/refs/heads/main/drift_before.gif" style="width:25rem;max-width:auto;">
-<img src="https://raw.githubusercontent.com/epser/eps-r.net/refs/heads/main/drift_after.gif" style="width:25rem;max-width:auto;">
+<img src="drift_before.gif" style="width:25rem;max-width:auto;">
+<img src="drift_after.gif" style="width:25rem;max-width:auto;">
 
 ゲーム再翻訳Mod。レースゲーム『[Inertial Drift](https://store.steampowered.com/app/1184480/Inertial_Drift/)』の壊れているフォントを修正したり、日本語の誤訳を大幅に修正したりする（2024年）
 
