@@ -18,7 +18,7 @@
 
 ## コンテンツ
 
-### [Chaos Galaxyシリーズの世界観](chaos_galaxy/worldview/)
+### [Chaos Galaxyシリーズの世界観](chaos-galaxy/worldview/)
 
 韓之昱(Han Zhiyu)氏開発のインディーゲーム『Chaos Galaxy』シリーズのバックストーリーの日本語版。
 
