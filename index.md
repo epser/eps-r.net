@@ -18,13 +18,9 @@
 
 ## コンテンツ
 
-<!--
-
 ### [Chaos Galaxyシリーズの世界観](chaos_galaxy/worldview/)
 
-韓之昱(Han Zhiyu)氏開発のインディーゲーム『Chaos Galaxy』シリーズのバックストーリー。
-
--->
+韓之昱(Han Zhiyu)氏開発のインディーゲーム『Chaos Galaxy』シリーズのバックストーリーの日本語版。
 
 ### [グリモア・ノート(仮)](https://grimoire.eps-r.net/)
 
@@ -36,7 +32,7 @@
 
 ## その他活動
 
-翻訳はすべてMTPE(Machine Translation Post Editing - 修正機械翻訳)の、無償あるいはソフトウェアライセンスくらいの報酬で行っている同人活動です。
+翻訳はすべてMTPE(Machine Translation Post Editing - 修正機械翻訳)の、無償あるいはソフトウェアライセンスほどの報酬で行っている同人活動です。
 
 ### Chaos Front (Demo) 日本語ローカライズ
 
