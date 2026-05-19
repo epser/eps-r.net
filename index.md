@@ -48,7 +48,7 @@
 
 <img src="https://raw.githubusercontent.com/epser/eps-r.net/refs/heads/main/warborn.gif" style="width:30rem;max-width:auto;">
 
-ゲーム再翻訳Mod。ストラテジーゲーム『[WARBORN](https://store.steampowered.com/app/918950/_/)』の破綻した日本語訳をロボットアニメ調に直し、フォントの見栄えを修正したり、幾つかの機能を追加したりする（2024年）
+ゲーム再翻訳Mod。ストラテジーゲーム『[WARBORN](https://store.steampowered.com/app/918950/_/)』の破綻した日本語訳をロボットアニメ調にやり直し、フォントの見栄えを修正したり、幾つかの機能を追加したりする（2024年）
 
 - 公開所:
   - Steam Community Guide: https://steamcommunity.com/sharedfiles/filedetails/?id=3386684473
