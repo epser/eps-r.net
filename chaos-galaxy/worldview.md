@@ -11,7 +11,7 @@ title: Chaos Galaxyシリーズの世界観
 > - 『[Chaos Sector](https://store.steampowered.com/app/943810/Chaos_Sector/)』2018年10月発売
 > - 『[Chaos Galaxy](https://store.steampowered.com/app/1184840/Chaos_Galaxy/)』2020年6月発売
 > - 『[Chaos Galaxy 2](https://store.steampowered.com/app/1537910/Chaos_Galaxy_2/)』2023年1月発売
-> - （開発中）『[Chaos Front](https://store.steampowered.com/app/2770330/Chaos_Front/)』2026年発売予定
+> - （開発中）『[Chaos Front](https://store.steampowered.com/app/2770330/Chaos_Front/)』2026年9月発売予定
 >
 > このページでは、韓之昱氏自身により以前に発表されたChaos Galaxyシリーズの背景設定について、稲葉(eps_r)が許可を得たうえで日本語版を掲載します。
 >
